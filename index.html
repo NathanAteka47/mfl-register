@@ -6,26 +6,239 @@
   <title>MFL Registration Process</title>
   <meta http-equiv="refresh" content="8;url=https://patakitu.co.ke?code=34aa3452-8829-4c67-ba2d-fa379705de65" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 60px;
-      background: #f8fafc;
-      color: #333;
+    :root {
+      --primary-green: #1a472a;
+      --secondary-green: #2d5a3c;
+      --accent-green: #3a7d5c;
+      --accent-red: #8b2635;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
-    a {
-      color: #0a66c2;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e2e8f0 100%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-green) 0%, var(--accent-green) 50%, var(--accent-red) 100%);
+    }
+
+    .logo {
+      margin-bottom: 24px;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    h1 {
+      color: var(--primary-green);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-light);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .step-card {
+      background: var(--light-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      text-align: left;
+      border-left: 4px solid var(--accent-green);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-number {
+      display: inline-block;
+      background: var(--primary-green);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-weight: bold;
+      margin-right: 12px;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-green);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(26, 71, 42, 0.2);
+      margin-top: 12px;
+    }
+
+    .btn:hover {
+      background: var(--secondary-green);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(26, 71, 42, 0.3);
+    }
+
+    .btn i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .info-text {
+      background: rgba(26, 71, 42, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      color: var(--text-dark);
+      border-left: 4px solid var(--accent-red);
+    }
+
+    .redirect-container {
+      margin-top: 32px;
+      padding: 16px;
+      background: rgba(139, 38, 53, 0.05);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(139, 38, 53, 0.2);
+      border-top: 3px solid var(--accent-red);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 12px;
+    }
+
+    .redirect-text {
+      font-weight: 600;
+      color: var(--accent-red);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px;
+      }
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      .step-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Welcome to MFL Registration!</h2>
-  <p>Step 1: <a href="https://chat.whatsapp.com/FZTfqHdmXgb9A5rufPtbGX?mode=wwt" target="_blank">
-    Click here to join the MFL WhatsApp Group
-  </a></p>
-  <p>After joining, you’ll automatically be redirected to the Patakitu App page.</p>
-  <p><strong>Redirecting in a few seconds...</strong></p>
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">MFL</div>
+      <h1>Welcome to MFL Registration!</h1>
+      <p class="subtitle">Join our community in just a few simple steps</p>
+    </div>
+    
+    <div class="step-card">
+      <div>
+        <span class="step-number">1</span>
+        <span class="step-title">Join Our WhatsApp Group</span>
+      </div>
+      <p>Connect with our community members and get the latest updates</p>
+      <a href="https://chat.whatsapp.com/FZTfqHdmXgb9A5rufPtbGX?mode=wwt" target="_blank" class="btn">
+        <i>💬</i> Join WhatsApp Group
+      </a>
+    </div>
+    
+    <div class="info-text">
+      <p>After joining the WhatsApp group, you'll automatically be redirected to the Patakitu App page where you can complete your registration.</p>
+    </div>
+    
+    <div class="redirect-container">
+      <div class="loader"></div>
+      <p class="redirect-text">Redirecting in a few seconds...</p>
+    </div>
+  </div>
 </body>
 </html>
